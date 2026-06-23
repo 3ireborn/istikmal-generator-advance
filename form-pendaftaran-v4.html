@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Form Pendaftaran Istikmal Syariah</title>
+
+<style>
+/* Style sama seperti sebelumnya */
+body{margin:0; padding:20px; background:#012b24; color:white; font-family:Arial,sans-serif;}
+.container{max-width:700px; margin:auto;}
+h1{text-align:center; color:#d4af37;}
+.photo-container {margin:20px auto; width:180px; height:180px; border:6px solid #d4af37; border-radius:50%; overflow:hidden;}
+.photo-container img {width:100%; height:100%; object-fit:cover;}
+label{display:block; margin-top:15px; margin-bottom:5px;}
+input,select{width:100%; padding:12px; border-radius:10px; border:none; box-sizing:border-box;}
+button{width:100%; margin-top:20px; padding:15px; background:#d4af37; color:black; border:none; border-radius:10px; font-weight:bold; font-size:18px;}
+.outbox{margin-top:20px; background:#083d35; padding:20px; border-radius:10px; white-space:pre-wrap; line-height:1.6;}
+.copyBtn{display:block; text-align:center; margin-top:10px; padding:15px; background:#00b894; color:white; text-decoration:none; border-radius:10px; font-weight:bold;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1 id="judulForm">FORM PENDAFTARAN ISTIKMAL SYARIAH</h1>
+
+<div class="photo-container">
+    <img id="leaderPhoto" src="" alt="Leader">
+</div>
+
+<label>Nama Lengkap</label>
+<input id="nama">
+
+<label>No WhatsApp</label>
+<input id="hp">
+
+<label>Kota / Domisili</label>
+<input id="kota">
+
+<label>Nama Ibu Kandung</label>
+<input id="ibu">
+
+<label>Pilihan Paket / Premi</label>
+<select id="premi">
+<option>Rp500.000 / bulan</option>
+<option>Rp700.000 / bulan</option>
+<option>Rp1.000.000 / bulan</option>
+<option>Rp2.000.000 / bulan</option>
+</select>
+
+<label>Catatan Tambahan (Opsional)</label>
+<textarea id="catatan" rows="3" placeholder="Contoh: Ingin keberangkatan tahun 2027"></textarea>
+
+<button onclick="generateData()">🚀 GENERATE DATA PENDAFTARAN</button>
+
+<div id="out" class="outbox"></div>
+
+<button onclick="copyData()">📋 COPY DATA</button>
+
+<a id="waBtn" class="copyBtn" target="_blank">💬 KIRIM KE LEADER VIA WA</a>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const leader = params.get("name") || "Leader";
+const wa = params.get("wa") || "";
+const jabatan = params.get("jabatan") || "";
+const judul = params.get("judul") || "FORM PENDAFTARAN ISTIKMAL SYARIAH";
+const foto = params.get("foto") || "";
+
+document.getElementById("judulForm").innerText = judul;
+
+if (foto) document.getElementById("leaderPhoto").src = foto;
+
+function generateData(){
+    const namaPendaftar = document.getElementById('nama').value || "-";
+    const hp = document.getElementById('hp').value || "-";
+    const kota = document.getElementById('kota').value || "-";
+    const ibu = document.getElementById('ibu').value || "-";
+    const premi = document.getElementById('premi').value;
+    const catatan = document.getElementById('catatan').value || "-";
+
+    const msg = `
+*${judul}*
+
+🕋 *DATA PENDAFTARAN*
+
+Nama Lengkap : ${namaPendaftar}
+No WhatsApp : ${hp}
+Kota / Domisili : ${kota}
+Nama Ibu Kandung : ${ibu}
+Pilihan Paket : ${premi}
+
+*Dibimbing Oleh*
+${leader}
+${jabatan}
+
+*Catatan Tambahan:*
+${catatan}
+
+━━━━━━━━━━
+Semoga Allah mudahkan perjalanan umroh kita 🤲
+`;
+
+    document.getElementById("out").textContent = msg;
+    
+    document.getElementById("waBtn").href = 
+        "https://wa.me/" + wa + "?text=" + encodeURIComponent(msg);
+}
+
+function copyData(){
+    const teks = document.getElementById("out").textContent;
+    navigator.clipboard.writeText(teks);
+    alert("✅ Data berhasil dicopy!");
+}
+
+document.getElementById("waBtn").href = "https://wa.me/" + wa;
+</script>
+
+</body>
+</html>
