@@ -3,137 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Generator Istikmal Syariah V7 Advance</title>
+<title>LP Builder V8 - 3IReborn</title>
 
 <style>
-body{margin:0; font-family:Arial,sans-serif; background:#061b18; color:white; padding:20px;}
-.box{max-width:700px; margin:auto;}
-h1{text-align:center; color:#d4af37;}
-input, textarea, select, button{
-    width:100%; padding:14px; margin:8px 0; border-radius:12px; border:none; font-size:16px;
-}
-button{font-weight:bold; cursor:pointer;}
-.upload-btn{background:#00cc99; color:white;}
-.generate-btn{background:#d4af37; color:#061b18; padding:18px; font-size:18px;}
-.preview-btn{background:#00b894; color:white; margin-top:5px;}
-.result{background:#102d28; padding:20px; border-radius:12px; margin-top:25px;}
-.link{color:#00ffcc; background:#0a1f1b; padding:12px; border-radius:8px; word-break:break-all; margin:10px 0;}
-.qr-box{text-align:center; margin:15px 0; padding:10px; background:#0a1f1b; border-radius:10px;}
-.qr-box img{max-width:200px; border:3px solid #d4af37; border-radius:10px;}
+body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
+.box{max-width:750px;margin:auto;}
+h1{text-align:center;color:#d4af37;}
+input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
+button{font-weight:bold;cursor:pointer;}
+.upload-btn{background:#00cc99;color:white;}
+.generate-btn{background:#d4af37;color:#061b18;padding:18px;}
+.download-btn{background:#00b894;color:white;padding:18px;margin-top:10px;}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1>ISTIKMAL SYARIAH<br><span style="font-size:22px;">GENERATOR V7 ADVANCE</span></h1>
+    <h1>LP BUILDER V8<br><span style="font-size:22px;">3IReborn</span></h1>
 
     <label>Nama Leader</label>
-    <input id="nama" placeholder="Nama Lengkap">
+    <input id="nama" value="Sugiarto Kurniawan">
 
     <label>No WhatsApp</label>
-    <input id="wa" placeholder="628xxxxxxxxxx">
+    <input id="wa" value="6282240001731">
 
     <label>Jenjang Karir</label>
     <select id="jabatan">
-        <option value="Mitra 3IReborn">Mitra 3IReborn</option>
-        <option value="Team Entrepreneur">Team Entrepreneur</option>
-        <option value="Leader Entrepreneur">Leader Entrepreneur</option>
-        <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
         <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
         <option value="Gold Entrepreneur">Gold Entrepreneur</option>
         <option value="Diamond Executive">Diamond Executive</option>
-        <option value="Royal Executive">Royal Executive</option>
-        <option value="King Executive">King Executive</option>
-        <option value="Queen 3IReborn">Queen 3IReborn</option>
     </select>
 
     <label>Link Foto Leader</label>
     <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
-    <input id="foto" placeholder="Paste link foto di sini">
+    <input id="foto" placeholder="Paste link foto">
 
     <label>Judul Utama</label>
     <input id="judul" value="ISTIKMAL SYARIAH">
 
-    <label>Tagline / Sub Judul</label>
+    <label>Tagline</label>
     <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
 
-    <label>Narasi / Deskripsi</label>
-    <textarea id="narasi" rows="4">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
+    <label>Deskripsi Utama</label>
+    <textarea id="deskripsi" rows="5">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
 
-    <button class="generate-btn" onclick="generate()">
-        🚀 GENERATE ADVANCE
+    <label>Teks Tombol CTA</label>
+    <input id="cta" value="Konsultasi Sekarang">
+
+    <button class="generate-btn" onclick="buildAndDownload()">
+        📥 DOWNLOAD FILE HTML
     </button>
-
-    <div class="result">
-        <h3>🔗 LP MASTER</h3>
-        <p id="master" class="link"></p>
-        <button onclick="copy('master')">📋 Copy Link</button>
-        <button class="preview-btn" onclick="preview('master')">👁️ Preview LP Master</button>
-        <div class="qr-box"><p>QR LP Master</p><img id="qrMaster" src=""></div>
-
-        <h3>🔥 LP HOT</h3>
-        <p id="hot" class="link"></p>
-        <button onclick="copy('hot')">📋 Copy Link</button>
-        <button class="preview-btn" onclick="preview('hot')">👁️ Preview LP Hot</button>
-        <div class="qr-box"><p>QR LP Hot</p><img id="qrHot" src=""></div>
-
-        <h3>📝 FORM PENDAFTARAN</h3>
-        <p id="form" class="link"></p>
-        <button onclick="copy('form')">📋 Copy Link</button>
-        <button class="preview-btn" onclick="preview('form')">👁️ Preview Form</button>
-    </div>
 </div>
 
 <script>
 function openUpload() {
-    alert("Buka https://postimages.org/ → Upload → Copy Direct Link");
     window.open('https://postimages.org/', '_blank');
 }
 
-function generate(){
-    const nama = document.getElementById("nama").value.trim();
-    const wa = document.getElementById("wa").value.trim();
-    const jabatan = document.getElementById("jabatan").value;
-    const foto = document.getElementById("foto").value.trim();
-    const judul = document.getElementById("judul").value.trim();
-    const tagline = document.getElementById("tagline").value.trim();
-    const narasi = document.getElementById("narasi").value.trim();
+function buildAndDownload() {
+    const nama = document.getElementById("nama").value || "Leader";
+    const wa = document.getElementById("wa").value || "";
+    const jabatan = document.getElementById("jabatan").value || "";
+    const foto = document.getElementById("foto").value || "";
+    const judul = document.getElementById("judul").value || "ISTIKMAL SYARIAH";
+    const tagline = document.getElementById("tagline").value || "";
+    const deskripsi = document.getElementById("deskripsi").value || "";
+    const cta = document.getElementById("cta").value || "Konsultasi Sekarang";
 
-    if (!nama || !wa || !foto) {
-        alert("❌ Nama, WA, dan Foto wajib diisi!");
-        return;
-    }
+    const htmlContent = `<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${judul}</title>
+<style>
+body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#012b24;color:white;text-align:center;}
+h1{color:#d4af37;font-size:38px;}
+.photo{width:200px;height:200px;border-radius:50%;border:8px solid #d4af37;margin:20px auto;display:block;object-fit:cover;}
+.card{background:#083d35;padding:25px;border-radius:20px;margin:20px;}
+.btn{background:#d4af37;color:#000;padding:18px;border-radius:12px;text-decoration:none;font-size:20px;font-weight:bold;display:inline-block;margin-top:20px;}
+</style>
+</head>
+<body>
+<h1>${judul}</h1>
+<img src="${foto}" class="photo" alt="${nama}">
+<h2>${tagline}</h2>
+<div class="card">
+<p>${deskripsi.replace(/\n/g, '<br>')}</p>
+<h3>Dibimbing oleh:<br>${nama}<br>${jabatan}</h3>
+<a href="https://wa.me/${wa}" class="btn">${cta}</a>
+</div>
+</body>
+</html>`;
 
-    const param = `?name=${encodeURIComponent(nama)}&wa=${wa}&jabatan=${encodeURIComponent(jabatan)}&foto=${encodeURIComponent(foto)}&judul=${encodeURIComponent(judul)}&tagline=${encodeURIComponent(tagline)}&narasi=${encodeURIComponent(narasi)}`;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
+    a.click();
 
-    const domain = "https://3ireborn.github.io/3ireborn-generator-v4/";
-
-    const masterLink = domain + "lp-master-v4.html" + param;
-    const hotLink   = domain + "lp-hot-v4.html" + param;
-    const formLink  = domain + "form-pendaftaran-v4.html" + param;
-
-    document.getElementById("master").innerText = masterLink;
-    document.getElementById("hot").innerText   = hotLink;
-    document.getElementById("form").innerText  = formLink;
-
-    const qrBase = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
-    document.getElementById("qrMaster").src = qrBase + encodeURIComponent(masterLink);
-    document.getElementById("qrHot").src   = qrBase + encodeURIComponent(hotLink);
-}
-
-function copy(id){
-    navigator.clipboard.writeText(document.getElementById(id).innerText);
-    alert("✅ Link berhasil dicopy!");
-}
-
-function preview(id){
-    const link = document.getElementById(id).innerText;
-    if(link) {
-        window.open(link, '_blank');
-    } else {
-        alert("Generate dulu ya beb");
-    }
+    alert("✅ File HTML berhasil di-download!\n\nUpload ke GitHub atau Netlify untuk dapatkan link.");
 }
 </script>
 
