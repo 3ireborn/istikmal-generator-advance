@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LP Builder V9.4 - Final</title>
+<title>LP Builder V9.4 Fixed</title>
 
 <style>
 body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#061b18;color:white;}
@@ -13,8 +13,6 @@ input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:
 button{font-weight:bold;cursor:pointer;}
 .upload-btn{background:#00cc99;color:white;}
 .generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
-.download-btn{background:#ff3366;color:white;padding:16px;}
-.section{background:#102d28;padding:15px;border-radius:12px;margin:15px 0;}
 </style>
 </head>
 
@@ -23,49 +21,41 @@ button{font-weight:bold;cursor:pointer;}
 <div class="box">
     <h1>LP BUILDER V9.4</h1>
 
-    <div class="section">
-        <label>Nama Leader</label>
-        <input id="nama" value="Sugiarto Kurniawan">
+    <label>Nama Leader</label>
+    <input id="nama" value="Sugiarto Kurniawan">
 
-        <label>No WhatsApp</label>
-        <input id="wa" value="6282240001731">
+    <label>No WhatsApp</label>
+    <input id="wa" value="6282240001731">
 
-        <label>Jenjang Karir</label>
-        <select id="jabatan">
-            <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
-            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-            <option value="Diamond Executive">Diamond Executive</option>
-        </select>
-    </div>
+    <label>Jenjang Karir</label>
+    <select id="jabatan">
+        <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
+        <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+        <option value="Diamond Executive">Diamond Executive</option>
+    </select>
 
-    <div class="section">
-        <label>Link Foto Leader</label>
-        <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
-        <input id="foto" placeholder="Paste link foto">
-    </div>
+    <label>Link Foto Leader</label>
+    <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
+    <input id="foto" placeholder="Paste link foto">
 
-    <div class="section">
-        <label>Hook (Teks Besar Mencolok)</label>
-        <input id="hook" value="Menabung Umroh Lebih Terarah">
+    <label>Hook Besar</label>
+    <input id="hook" value="Menabung Umroh Lebih Terarah">
 
-        <label>Judul Utama</label>
-        <input id="judul" value="ISTIKMAL SYARIAH">
+    <label>Judul Utama</label>
+    <input id="judul" value="ISTIKMAL SYARIAH">
 
-        <label>Tagline</label>
-        <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
+    <label>Tagline</label>
+    <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
 
-        <label>Deskripsi Utama</label>
-        <textarea id="deskripsi" rows="4">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
-    </div>
+    <label>Deskripsi</label>
+    <textarea id="deskripsi" rows="4">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
 
-    <div class="section">
-        <label>Testimoni (pisahkan dengan Enter)</label>
-        <textarea id="testimoni" rows="6">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang." - Queen Tini
+    <label>Testimoni (pisahkan dengan Enter)</label>
+    <textarea id="testimoni" rows="6">"Alhamdulillah berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang." - Queen Tini
 
 "Sangat membantu dan transparan." - Enila Hasan
 
 "Prosesnya mudah dan sesuai syariah." - King Endri</textarea>
-    </div>
 
     <button class="generate-btn" onclick="buildAndDownload()">📥 DOWNLOAD FILE HTML</button>
 </div>
@@ -126,7 +116,7 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
     a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
     a.click();
 
-    alert("✅ File HTML berhasil di-download!\n\nUpload ke Netlify atau GitHub Pages.");
+    alert("✅ File HTML berhasil di-download!");
 }
 </script>
 
