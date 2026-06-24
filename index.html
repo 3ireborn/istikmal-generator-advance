@@ -3,78 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LP Builder V8.1 - Keren</title>
+<title>LP Builder V9 - Full Premium</title>
 
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
-.box{max-width:800px;margin:auto;}
-h1{text-align:center;color:#d4af37;}
+.box{max-width:850px;margin:auto;}
+h1{text-align:center;color:#d4af37;margin-bottom:30px;}
 input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
 button{font-weight:bold;cursor:pointer;}
 .upload-btn{background:#00cc99;color:white;}
 .generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
-.download-btn{background:#ff3366;color:white;padding:18px;margin-top:10px;}
+.copy-btn{background:#00b894;color:white;padding:16px;}
+.download-btn{background:#ff3366;color:white;padding:16px;}
+.section{margin:15px 0;padding:15px;background:#102d28;border-radius:12px;}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1>LP BUILDER V8.1<br><span style="font-size:22px;">DESIGN KEREN</span></h1>
+    <h1>LP BUILDER V9<br><span style="font-size:24px;">FULL PREMIUM</span></h1>
 
-    <label>Nama Leader</label>
-    <input id="nama" value="Sugiarto Kurniawan">
+    <div class="section">
+        <label>Nama Leader</label>
+        <input id="nama" value="Sugiarto Kurniawan">
+        <label>No WhatsApp</label>
+        <input id="wa" value="6282240001731">
+        <label>Jenjang Karir</label>
+        <select id="jabatan">
+            <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
+            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+            <option value="Diamond Executive">Diamond Executive</option>
+        </select>
+    </div>
 
-    <label>No WhatsApp</label>
-    <input id="wa" value="6282240001731">
+    <div class="section">
+        <label>Link Foto Leader</label>
+        <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
+        <input id="foto" placeholder="Paste link foto">
+    </div>
 
-    <label>Jenjang Karir</label>
-    <select id="jabatan">
-        <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
-        <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-        <option value="Diamond Executive">Diamond Executive</option>
-    </select>
+    <div class="section">
+        <label>1. Hook (Teks Besar Mencolok)</label>
+        <input id="hook" value="Menabung Umroh Lebih Terarah">
+        <label>Warna Hook</label>
+        <select id="hookColor">
+            <option value="#ffd700">#Gold</option>
+            <option value="#ff3366">#Merah Muda</option>
+            <option value="#00ffcc">#Cyan</option>
+            <option value="#ffffff">#Putih</option>
+        </select>
+    </div>
 
-    <label>Link Foto Leader</label>
-    <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
-    <input id="foto" placeholder="Paste link foto">
+    <div class="section">
+        <label>2. Judul Utama</label>
+        <input id="judul" value="ISTIKMAL SYARIAH">
+        <label>3. Tagline</label>
+        <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
+    </div>
 
-    <label>1. Hook (Teks Besar Mencolok)</label>
-    <input id="hook" value="Menabung Umroh Lebih Terarah">
+    <div class="section">
+        <label>4. Deskripsi Utama</label>
+        <textarea id="deskripsi" rows="4">Jangan menunggu semuanya sempurna. Mulailah dari kemampuan yang ada hari ini.</textarea>
+    </div>
 
-    <label>Warna Hook</label>
-    <select id="hookColor">
-        <option value="#ffd700">#Gold</option>
-        <option value="#ff3366">#Pink Merah</option>
-        <option value="#00ffcc">#Cyan</option>
-        <option value="#ffffff">#Putih</option>
-    </select>
+    <div class="section">
+        <label>5. Testimoni (pisahkan dengan baris baru)</label>
+        <textarea id="testimoni" rows="4">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang."\n\n"Sangat membantu, pembimbingnya sabar dan jelas."</textarea>
+    </div>
 
-    <label>2. Judul Utama</label>
-    <input id="judul" value="ISTIKMAL SYARIAH">
+    <div class="section">
+        <label>6. FAQ (format: Pertanyaan? Jawaban)</label>
+        <textarea id="faq" rows="5">Berapa minimal tabungan?\nMulai dari Rp500.000 per bulan.\n\nApakah syariah?\n100% sesuai prinsip syariah, tanpa riba.</textarea>
+    </div>
 
-    <label>3. Tagline</label>
-    <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
+    <div class="section">
+        <label>7. Teks Tombol CTA</label>
+        <input id="cta" value="Konsultasi Sekarang">
+        <label>Greeting WA</label>
+        <input id="greeting" value="Assalamualaikum">
+    </div>
 
-    <label>4. Deskripsi</label>
-    <textarea id="deskripsi" rows="5">Jangan menunggu semuanya sempurna. Mulailah dari kemampuan yang ada hari ini...</textarea>
-
-    <label>5. Teks Tombol CTA</label>
-    <input id="cta" value="Konsultasi Sekarang">
-
-    <label>6. Greeting WA (Assalamualaikum / Halo Kak / dll)</label>
-    <input id="greeting" value="Assalamualaikum">
-
-    <label>Background Style</label>
-    <select id="bgStyle">
-        <option value="gradient">Gradient Emas Premium</option>
-        <option value="dark">Hijau Gelap Elegan</option>
-        <option value="modern">Modern Wave</option>
-    </select>
-
-    <button class="download-btn" onclick="buildAndDownload()">
-        📥 DOWNLOAD FILE HTML
-    </button>
+    <button class="generate-btn" onclick="buildAndDownload()">📥 DOWNLOAD HTML</button>
+    <button class="copy-btn" onclick="copyCode()">📋 Copy Full HTML Code</button>
 </div>
 
 <script>
@@ -83,6 +94,7 @@ function openUpload() {
 }
 
 function buildAndDownload() {
+    // Ambil semua nilai
     const nama = document.getElementById("nama").value || "Leader";
     const wa = document.getElementById("wa").value || "";
     const jabatan = document.getElementById("jabatan").value || "";
@@ -92,27 +104,25 @@ function buildAndDownload() {
     const judul = document.getElementById("judul").value || "ISTIKMAL SYARIAH";
     const tagline = document.getElementById("tagline").value || "";
     const deskripsi = document.getElementById("deskripsi").value || "";
+    const testimoni = document.getElementById("testimoni").value || "";
+    const faq = document.getElementById("faq").value || "";
     const cta = document.getElementById("cta").value || "Konsultasi Sekarang";
     const greeting = document.getElementById("greeting").value || "Assalamualaikum";
-    const bgStyle = document.getElementById("bgStyle").value;
 
-    let bgCSS = '';
-    if (bgStyle === 'gradient') bgCSS = 'background: linear-gradient(135deg, #0c2b24, #3a2a1f);';
-    else if (bgStyle === 'modern') bgCSS = 'background: linear-gradient(#012b24, #1a3f35);';
-
-    const htmlContent = `<!DOCTYPE html>
+    let htmlContent = `<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${judul}</title>
 <style>
-body{margin:0;padding:40px 20px;font-family:Arial,sans-serif;color:white;text-align:center;${bgCSS} min-height:100vh;}
-h1{color:#ffd700;font-size:42px;margin:15px 0;}
-.hook{color:${hookColor};font-size:48px;font-weight:bold;margin:20px 0;text-shadow:0 0 15px rgba(255,215,0,0.6);}
-.photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.5);}
-.card{background:rgba(8,61,53,0.95);padding:30px;border-radius:25px;margin:30px auto;max-width:600px;}
-.btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;box-shadow:0 8px 15px rgba(255,215,0,0.3);}
+body{margin:0;padding:20px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0c2b24,#3a2a1f);color:white;text-align:center;}
+h1{color:#ffd700;font-size:42px;margin:20px 0;}
+.hook{color:${hookColor};font-size:48px;font-weight:bold;margin:15px 0;text-shadow:0 0 20px rgba(255,215,0,0.8);}
+.photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.6);}
+.card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:600px;}
+.testimoni{background:#1a3f35;padding:20px;border-radius:15px;margin:20px auto;}
+.btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;}
 </style>
 </head>
 <body>
@@ -124,10 +134,19 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
         <p>${deskripsi.replace(/\n/g, '<br><br>')}</p>
         <h3>Dibimbing oleh:<br><strong>${nama}</strong><br>${jabatan}</h3>
         <a href="https://wa.me/${wa}?text=${encodeURIComponent(greeting + ', saya ingin info Istikmal Syariah')}" class="btn">${cta}</a>
-    </div>
-</body>
-</html>`;
+    </div>`;
 
+    if (testimoni) {
+        htmlContent += `<div class="testimoni"><strong>Testimoni:</strong><br>${testimoni.replace(/\n/g, '<br><br>')}</div>`;
+    }
+
+    if (faq) {
+        htmlContent += `<div class="card"><strong>FAQ:</strong><br>${faq.replace(/\n/g, '<br><br>')}</div>`;
+    }
+
+    htmlContent += `</body></html>`;
+
+    // Download
     const blob = new Blob([htmlContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -135,7 +154,11 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
     a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
     a.click();
 
-    alert("✅ File HTML berhasil di-download!\n\nBisa langsung di-upload ke GitHub atau Netlify.");
+    alert("✅ File HTML berhasil di-download!\n\nBisa langsung di-upload ke Netlify atau GitHub Pages.");
+}
+
+function copyCode() {
+    alert("Fitur Copy Code sedang dalam pengembangan.\n\nSementara pakai tombol Download dulu ya beb.");
 }
 </script>
 
