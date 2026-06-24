@@ -3,49 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LP Builder V9.3</title>
+<title>LP Builder V9.3 - 3IReborn</title>
 
 <style>
-body{margin:0;padding:20px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0c2b24,#1f3a2f);color:white;text-align:center;}
-h1{color:#ffd700;font-size:42px;margin:15px 0;}
-.hook{color:#ffeb3b;font-size:46px;font-weight:bold;margin:10px 0;text-shadow:0 0 20px #ffd700;}
-.photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.7);}
-.card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:620px;}
-.btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;}
+body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
+.box{max-width:800px;margin:auto;}
+h1{text-align:center;color:#d4af37;}
+input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
+button{font-weight:bold;cursor:pointer;}
+.upload-btn{background:#00cc99;color:white;}
+.generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
+.copy-btn{background:#00b894;color:white;padding:16px;}
+.download-btn{background:#ff3366;color:white;padding:16px;}
+.section{background:#102d28;padding:15px;border-radius:12px;margin:15px 0;}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1 id="judul">ISTIKMAL SYARIAH</h1>
-    
-    <div class="hook" id="hook">Menabung Umroh Lebih Terarah</div>
-    
-    <img id="foto" class="photo" src="https://i.postimg.cc/0jKzY8ZJ/default-leader.jpg" alt="">
-    
-    <h2 id="tagline">Bisnis Berkah Mengantarkan Sampai Ke Mekah</h2>
-    
-    <div class="card">
-        <p id="deskripsi">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</p>
-        
-        <h3 id="leader">Dibimbing oleh:<br><strong>Sugiarto Kurniawan</strong><br>Silver Entrepreneur</h3>
-        
-        <a id="waBtn" href="#" class="btn">Konsultasi Sekarang</a>
+    <h1>LP BUILDER V9.3</h1>
+
+    <div class="section">
+        <label>Nama Leader</label>
+        <input id="nama" value="Sugiarto Kurniawan">
+
+        <label>No WhatsApp</label>
+        <input id="wa" value="6282240001731">
+
+        <label>Jenjang Karir</label>
+        <select id="jabatan">
+            <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
+            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+            <option value="Diamond Executive">Diamond Executive</option>
+        </select>
     </div>
+
+    <div class="section">
+        <label>Link Foto Leader</label>
+        <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
+        <input id="foto" placeholder="Paste link foto di sini">
+    </div>
+
+    <div class="section">
+        <label>Hook (Teks Besar Mencolok)</label>
+        <input id="hook" value="Menabung Umroh Lebih Terarah">
+
+        <label>Judul Utama</label>
+        <input id="judul" value="ISTIKMAL SYARIAH">
+
+        <label>Tagline</label>
+        <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
+
+        <label>Deskripsi Utama</label>
+        <textarea id="deskripsi" rows="4">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
+    </div>
+
+    <div class="section">
+        <label>Testimoni (pisahkan dengan Enter)</label>
+        <textarea id="testimoni" rows="5">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang." - Queen Tini
+
+"Sangat membantu dan transparan." - Enila Hasan
+
+"Prosesnya mudah dan sesuai syariah." - King Endri</textarea>
+    </div>
+
+    <button class="generate-btn" onclick="buildAndDownload()">📥 DOWNLOAD FILE HTML</button>
 </div>
 
 <script>
-// Script untuk download
+function openUpload() {
+    alert("Buka tab baru:\nhttps://postimages.org/");
+    window.open('https://postimages.org/', '_blank');
+}
+
 function buildAndDownload() {
-    const nama = document.getElementById("nama")?.value || "Sugiarto Kurniawan";
-    const wa = document.getElementById("wa")?.value || "6282240001731";
-    const jabatan = document.getElementById("jabatan")?.value || "Silver Entrepreneur";
-    const foto = document.getElementById("foto")?.value || "";
-    const hook = document.getElementById("hook")?.value || "Menabung Umroh Lebih Terarah";
-    const judul = document.getElementById("judul")?.value || "ISTIKMAL SYARIAH";
-    const tagline = document.getElementById("tagline")?.value || "Bisnis Berkah Mengantarkan Sampai Ke Mekah";
-    const deskripsi = document.getElementById("deskripsi")?.value || "";
+    const nama = document.getElementById("nama").value.trim() || "Leader";
+    const wa = document.getElementById("wa").value.trim() || "";
+    const jabatan = document.getElementById("jabatan").value;
+    const foto = document.getElementById("foto").value.trim();
+    const hook = document.getElementById("hook").value.trim();
+    const judul = document.getElementById("judul").value.trim();
+    const tagline = document.getElementById("tagline").value.trim();
+    const deskripsi = document.getElementById("deskripsi").value.trim();
+    const testimoni = document.getElementById("testimoni").value.trim();
 
     const htmlContent = `<!DOCTYPE html>
 <html lang="id">
@@ -59,6 +100,7 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
 .hook{color:#ffeb3b;font-size:46px;font-weight:bold;margin:10px 0;text-shadow:0 0 20px #ffd700;}
 .photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.7);}
 .card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:620px;}
+.testimoni{background:#1a3f35;padding:20px;border-radius:15px;margin:20px auto;text-align:left;}
 .btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;}
 </style>
 </head>
@@ -72,6 +114,10 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
         <h3>Dibimbing oleh:<br><strong>${nama}</strong><br>${jabatan}</h3>
         <a href="https://wa.me/${wa}" class="btn">Konsultasi Sekarang</a>
     </div>
+    <div class="testimoni">
+        <strong>Testimoni:</strong><br><br>
+        ${testimoni.replace(/\n/g, '<br><br>')}
+    </div>
 </body>
 </html>`;
 
@@ -82,7 +128,7 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
     a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
     a.click();
 
-    alert("✅ File berhasil di-download!");
+    alert("✅ File HTML berhasil di-download!\n\nUpload ke Netlify atau GitHub Pages.");
 }
 </script>
 
