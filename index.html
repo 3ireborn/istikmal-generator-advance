@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LP Builder V9.3 - 3IReborn</title>
+<title>LP Builder V9.4 - Final</title>
 
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
+body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#061b18;color:white;}
 .box{max-width:800px;margin:auto;}
 h1{text-align:center;color:#d4af37;}
 input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
 button{font-weight:bold;cursor:pointer;}
 .upload-btn{background:#00cc99;color:white;}
 .generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
-.copy-btn{background:#00b894;color:white;padding:16px;}
 .download-btn{background:#ff3366;color:white;padding:16px;}
 .section{background:#102d28;padding:15px;border-radius:12px;margin:15px 0;}
 </style>
@@ -22,7 +21,7 @@ button{font-weight:bold;cursor:pointer;}
 <body>
 
 <div class="box">
-    <h1>LP BUILDER V9.3</h1>
+    <h1>LP BUILDER V9.4</h1>
 
     <div class="section">
         <label>Nama Leader</label>
@@ -42,7 +41,7 @@ button{font-weight:bold;cursor:pointer;}
     <div class="section">
         <label>Link Foto Leader</label>
         <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
-        <input id="foto" placeholder="Paste link foto di sini">
+        <input id="foto" placeholder="Paste link foto">
     </div>
 
     <div class="section">
@@ -61,7 +60,7 @@ button{font-weight:bold;cursor:pointer;}
 
     <div class="section">
         <label>Testimoni (pisahkan dengan Enter)</label>
-        <textarea id="testimoni" rows="5">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang." - Queen Tini
+        <textarea id="testimoni" rows="6">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang." - Queen Tini
 
 "Sangat membantu dan transparan." - Enila Hasan
 
@@ -73,15 +72,14 @@ button{font-weight:bold;cursor:pointer;}
 
 <script>
 function openUpload() {
-    alert("Buka tab baru:\nhttps://postimages.org/");
     window.open('https://postimages.org/', '_blank');
 }
 
 function buildAndDownload() {
     const nama = document.getElementById("nama").value.trim() || "Leader";
     const wa = document.getElementById("wa").value.trim() || "";
-    const jabatan = document.getElementById("jabatan").value;
-    const foto = document.getElementById("foto").value.trim();
+    const jabatan = document.getElementById("jabatan").value || "";
+    const foto = document.getElementById("foto").value.trim() || "";
     const hook = document.getElementById("hook").value.trim();
     const judul = document.getElementById("judul").value.trim();
     const tagline = document.getElementById("tagline").value.trim();
@@ -100,13 +98,13 @@ h1{color:#ffd700;font-size:42px;margin:15px 0;}
 .hook{color:#ffeb3b;font-size:46px;font-weight:bold;margin:10px 0;text-shadow:0 0 20px #ffd700;}
 .photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.7);}
 .card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:620px;}
-.testimoni{background:#1a3f35;padding:20px;border-radius:15px;margin:20px auto;text-align:left;}
+.testimoni{background:#1a3f35;padding:20px;border-radius:15px;margin:20px auto;text-align:left;line-height:1.6;}
 .btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;}
 </style>
 </head>
 <body>
     <h1>${judul}</h1>
-    <div class="hook">${hook}</div>
+    ${hook ? `<div class="hook">${hook}</div>` : ''}
     <img src="${foto}" class="photo" alt="${nama}">
     <h2>${tagline}</h2>
     <div class="card">
