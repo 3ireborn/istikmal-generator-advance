@@ -7,12 +7,12 @@
 
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
-.box{max-width:750px;margin:auto;}
+.box{max-width:800px;margin:auto;}
 h1{text-align:center;color:#d4af37;}
 input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
 button{font-weight:bold;cursor:pointer;}
 .upload-btn{background:#00cc99;color:white;}
-.generate-btn{background:#d4af37;color:#061b18;padding:18px;}
+.generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
 .download-btn{background:#00b894;color:white;padding:18px;margin-top:10px;}
 </style>
 </head>
@@ -20,7 +20,7 @@ button{font-weight:bold;cursor:pointer;}
 <body>
 
 <div class="box">
-    <h1>LP BUILDER V8<br><span style="font-size:22px;">3IReborn</span></h1>
+    <h1>LP BUILDER V8</h1>
 
     <label>Nama Leader</label>
     <input id="nama" value="Sugiarto Kurniawan">
@@ -39,19 +39,38 @@ button{font-weight:bold;cursor:pointer;}
     <button class="upload-btn" onclick="openUpload()">📸 Upload Foto</button>
     <input id="foto" placeholder="Paste link foto">
 
-    <label>Judul Utama</label>
+    <!-- Customization -->
+    <label>1. Hook (Teks Besar Mencolok)</label>
+    <input id="hook" value="Menabung Umroh Lebih Terarah" style="font-size:18px;">
+
+    <label>Warna Hook</label>
+    <select id="hookColor">
+        <option value="#ffd700">#Gold</option>
+        <option value="#ff3366">#Merah Muda</option>
+        <option value="#00ffcc">#Cyan</option>
+        <option value="#ffffff" selected>Putih</option>
+    </select>
+
+    <label>2. Judul Utama</label>
     <input id="judul" value="ISTIKMAL SYARIAH">
 
-    <label>Tagline</label>
+    <label>3. Tagline</label>
     <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
 
-    <label>Deskripsi Utama</label>
-    <textarea id="deskripsi" rows="5">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
+    <label>4. Deskripsi</label>
+    <textarea id="deskripsi" rows="4">Mulai rencanakan Umroh dengan cara sederhana. Sisihkan bukan sisakan.</textarea>
 
-    <label>Teks Tombol CTA</label>
+    <label>5. Teks Tombol CTA</label>
     <input id="cta" value="Konsultasi Sekarang">
 
-    <button class="generate-btn" onclick="buildAndDownload()">
+    <label>Background Style</label>
+    <select id="bgStyle">
+        <option value="dark">Hijau Gelap (Default)</option>
+        <option value="gradient">Gradient Emas</option>
+        <option value="wave">Wave Modern</option>
+    </select>
+
+    <button class="download-btn" onclick="buildAndDownload()">
         📥 DOWNLOAD FILE HTML
     </button>
 </div>
@@ -66,10 +85,22 @@ function buildAndDownload() {
     const wa = document.getElementById("wa").value || "";
     const jabatan = document.getElementById("jabatan").value || "";
     const foto = document.getElementById("foto").value || "";
+    const hook = document.getElementById("hook").value || "";
+    const hookColor = document.getElementById("hookColor").value;
     const judul = document.getElementById("judul").value || "ISTIKMAL SYARIAH";
     const tagline = document.getElementById("tagline").value || "";
     const deskripsi = document.getElementById("deskripsi").value || "";
     const cta = document.getElementById("cta").value || "Konsultasi Sekarang";
+    const bgStyle = document.getElementById("bgStyle").value;
+
+    let bgStyleCSS = '';
+    if (bgStyle === 'gradient') {
+        bgStyleCSS = 'background: linear-gradient(135deg, #0f2b24, #d4af37);';
+    } else if (bgStyle === 'wave') {
+        bgStyleCSS = 'background: linear-gradient(#012b24, #0a3f38);';
+    } else {
+        bgStyleCSS = 'background:#012b24;';
+    }
 
     const htmlContent = `<!DOCTYPE html>
 <html lang="id">
@@ -78,22 +109,24 @@ function buildAndDownload() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${judul}</title>
 <style>
-body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#012b24;color:white;text-align:center;}
-h1{color:#d4af37;font-size:38px;}
-.photo{width:200px;height:200px;border-radius:50%;border:8px solid #d4af37;margin:20px auto;display:block;object-fit:cover;}
-.card{background:#083d35;padding:25px;border-radius:20px;margin:20px;}
-.btn{background:#d4af37;color:#000;padding:18px;border-radius:12px;text-decoration:none;font-size:20px;font-weight:bold;display:inline-block;margin-top:20px;}
+body{margin:0;padding:20px;font-family:Arial,sans-serif;color:white;text-align:center;${bgStyleCSS}}
+h1{color:#d4af37;font-size:38px;margin:20px 0;}
+.hook{color:${hookColor};font-size:42px;font-weight:bold;margin:15px 0;}
+.photo{width:220px;height:220px;border-radius:50%;border:8px solid #d4af37;margin:20px auto;display:block;object-fit:cover;}
+.card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:20px auto;max-width:600px;}
+.btn{background:#d4af37;color:#000;padding:18px 40px;border-radius:50px;text-decoration:none;font-size:20px;font-weight:bold;display:inline-block;margin:20px 0;}
 </style>
 </head>
 <body>
-<h1>${judul}</h1>
-<img src="${foto}" class="photo" alt="${nama}">
-<h2>${tagline}</h2>
-<div class="card">
-<p>${deskripsi.replace(/\n/g, '<br>')}</p>
-<h3>Dibimbing oleh:<br>${nama}<br>${jabatan}</h3>
-<a href="https://wa.me/${wa}" class="btn">${cta}</a>
-</div>
+    <h1>${judul}</h1>
+    ${hook ? `<div class="hook">${hook}</div>` : ''}
+    <img src="${foto}" class="photo" alt="${nama}">
+    <h2>${tagline}</h2>
+    <div class="card">
+        <p>${deskripsi.replace(/\n/g, '<br><br>')}</p>
+        <h3>Dibimbing oleh:<br><strong>${nama}</strong><br>${jabatan}</h3>
+        <a href="https://wa.me/${wa}" class="btn">${cta}</a>
+    </div>
 </body>
 </html>`;
 
@@ -104,7 +137,7 @@ h1{color:#d4af37;font-size:38px;}
     a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
     a.click();
 
-    alert("✅ File HTML berhasil di-download!\n\nUpload ke GitHub atau Netlify untuk dapatkan link.");
+    alert("✅ File HTML berhasil di-download!\n\nUpload ke Netlify / GitHub Pages.");
 }
 </script>
 
