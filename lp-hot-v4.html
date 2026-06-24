@@ -3,139 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Istikmal Syariah - Mulai Dari Sekarang</title>
+<title>Istikmal Syariah</title>
 
 <style>
-body{
-    margin:0;
-    padding:20px;
-    font-family:Arial,sans-serif;
-    background:#012b24;
-    color:white;
-    text-align:center;
-}
-
-.container{
-    max-width:600px;
-    margin:auto;
-}
-
-h1{
-    color:#d4af37;
-    font-size:42px;
-    margin-top:30px;
-}
-
-h2{
-    font-size:34px;
-    margin:20px 0;
-    color:#d4af37;
-}
-
-.photo-container {
-    margin: 25px auto;
-    width: 220px;
-    height: 220px;
-    border: 8px solid #d4af37;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-}
-
-.photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.card{
-    background:#083d35;
-    padding:25px;
-    border-radius:20px;
-    margin-top:30px;
-}
-
-.point{
-    text-align:left;
-    font-size:20px;
-    line-height:1.8;
-}
-
-.btn{
-    display:block;
-    background:#d4af37;
-    color:#000;
-    text-decoration:none;
-    padding:18px;
-    border-radius:12px;
-    margin-top:25px;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.footer{
-    margin-top:40px;
-    opacity:.8;
-    font-size:14px;
-}
+body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#012b24;color:white;text-align:center;}
+.container{max-width:600px;margin:auto;}
+h1{color:#d4af37;font-size:42px;margin:30px 0 10px;}
+h2{color:#d4af37;font-size:32px;margin:10px 0;}
+.photo-container{margin:20px auto;width:220px;height:220px;border:8px solid #d4af37;border-radius:50%;overflow:hidden;box-shadow:0 0 20px rgba(212,175,55,0.6);}
+.photo-container img{width:100%;height:100%;object-fit:cover;}
+.card{background:#083d35;padding:25px;border-radius:20px;margin-top:20px;}
+.point{text-align:left;font-size:19px;line-height:1.7;}
+.btn{display:block;background:#d4af37;color:#000;padding:18px;border-radius:12px;margin:25px auto 0;width:90%;font-size:21px;font-weight:bold;text-decoration:none;}
 </style>
 </head>
 
 <body>
-
 <div class="container">
+    <h1 id="judul">ISTIKMAL SYARIAH</h1>
+    
+    <div class="photo-container">
+        <img id="leaderPhoto" src="" alt="">
+    </div>
 
-<h1 id="judul">ISTIKMAL SYARIAH</h1>
+    <h2 id="tagline">Bisnis Berkah Mengantarkan Sampai Ke Mekah</h2>
 
-<!-- FOTO LEADER -->
-<div class="photo-container">
-    <img id="leaderPhoto" src="" alt="Leader">
-</div>
+    <div class="card">
+        <div class="point" id="narasi">
+            Mulai rencanakan Umroh dengan cara sederhana.<br>
+            Sisihkan bukan sisakan.
+        </div>
 
-<h2 id="tagline">Kenapa Harus Mulai Sekarang?</h2>
+        <h3 id="leader">Dibimbing oleh:</h3>
 
-<div class="card">
-
-<div class="point" id="narasi">
-❌ Biaya Umroh terus naik<br>
-❌ Menunggu kaya belum tentu berangkat<br>
-❌ Menunggu pensiun belum tentu sehat<br><br>
-
-✅ Mulai dari Rp500.000/bulan<br>
-✅ Sisihkan Bukan Sisakan<br>
-✅ Dibimbing sampai siap berangkat
-</div>
-
-<br>
-
-<h3 id="leader">Dibimbing oleh:</h3>
-
-<a id="waBtn" class="btn">
-KONSULTASI SEKARANG
-</a>
-
-</div>
-
-<div class="footer">
-Istikmal Syariah V7 Advance
-</div>
-
+        <a id="waBtn" class="btn">KONSULTASI SEKARANG</a>
+    </div>
 </div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
 
+document.getElementById("judul").innerText = params.get("judul") || "ISTIKMAL SYARIAH";
+document.getElementById("tagline").innerText = params.get("tagline") || "Bisnis Berkah Mengantarkan Sampai Ke Mekah";
+
+const narasi = params.get("narasi");
+if (narasi) document.getElementById("narasi").innerHTML = narasi.replace(/\n/g, '<br>');
+
+document.getElementById("leaderPhoto").src = params.get("foto") || "https://i.postimg.cc/0jKzY8ZJ/default-leader.jpg";
+
 const nama = params.get("name") || "Leader";
+const jabatan = params.get("jabatan") || "";
+document.getElementById("leader").innerHTML = `Dibimbing oleh:<br><strong>${nama}</strong><br>${jabatan}`;
+
 const wa = params.get("wa") || "";
-const foto = params.get("foto") || "";
-const jabatan = params.get("jabatan") || "Konsultan Istikmal Syariah";
-const judul = params.get("judul") || "ISTIKMAL SYARIAH";
-const tagline = params.get("tagline") || "Kenapa Harus Mulai Sekarang?";
-const narasi = params.get("narasi") || "";
-
-document.getElementById("judul").innerText = judul;
-document.getElementById("tagline").innerText = tagline;
-
-// Narasi (kalau diisi dari generator)
-if (
+const pesan = `Halo ${nama}, saya ingin info Istikmal Syariah`;
+document.getElementById("waBtn").href = `https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`;
+</script>
+</body>
+</html>
