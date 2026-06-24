@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LP Builder V9 - Full Premium</title>
+<title>LP Builder V9.1 - Full Premium</title>
 
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#061b18;color:white;padding:20px;}
 .box{max-width:850px;margin:auto;}
-h1{text-align:center;color:#d4af37;margin-bottom:30px;}
+h1{text-align:center;color:#d4af37;}
 input,textarea,select,button{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:none;font-size:16px;}
 button{font-weight:bold;cursor:pointer;}
 .upload-btn{background:#00cc99;color:white;}
 .generate-btn{background:#d4af37;color:#061b18;padding:18px;font-size:18px;}
 .copy-btn{background:#00b894;color:white;padding:16px;}
 .download-btn{background:#ff3366;color:white;padding:16px;}
-.section{margin:15px 0;padding:15px;background:#102d28;border-radius:12px;}
+.section{background:#102d28;padding:15px;border-radius:12px;margin:15px 0;}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1>LP BUILDER V9<br><span style="font-size:24px;">FULL PREMIUM</span></h1>
+    <h1>LP BUILDER V9.1<br><span style="font-size:24px;">FULL CUSTOM</span></h1>
 
     <div class="section">
         <label>Nama Leader</label>
@@ -44,12 +44,12 @@ button{font-weight:bold;cursor:pointer;}
     </div>
 
     <div class="section">
-        <label>1. Hook (Teks Besar Mencolok)</label>
+        <label>1. Hook (Teks Besar)</label>
         <input id="hook" value="Menabung Umroh Lebih Terarah">
         <label>Warna Hook</label>
         <select id="hookColor">
             <option value="#ffd700">#Gold</option>
-            <option value="#ff3366">#Merah Muda</option>
+            <option value="#ff3366">#Pink</option>
             <option value="#00ffcc">#Cyan</option>
             <option value="#ffffff">#Putih</option>
         </select>
@@ -58,34 +58,43 @@ button{font-weight:bold;cursor:pointer;}
     <div class="section">
         <label>2. Judul Utama</label>
         <input id="judul" value="ISTIKMAL SYARIAH">
+        <label>Warna Judul</label>
+        <select id="judulColor">
+            <option value="#ffd700">#Gold</option>
+            <option value="#ffffff">#Putih</option>
+            <option value="#d4af37">#Kuning Emas</option>
+        </select>
+    </div>
+
+    <div class="section">
         <label>3. Tagline</label>
         <input id="tagline" value="Bisnis Berkah Mengantarkan Sampai Ke Mekah">
     </div>
 
     <div class="section">
-        <label>4. Deskripsi Utama</label>
-        <textarea id="deskripsi" rows="4">Jangan menunggu semuanya sempurna. Mulailah dari kemampuan yang ada hari ini.</textarea>
+        <label>4. Deskripsi</label>
+        <textarea id="deskripsi" rows="4">Jangan menunggu semuanya sempurna...</textarea>
     </div>
 
     <div class="section">
-        <label>5. Testimoni (pisahkan dengan baris baru)</label>
-        <textarea id="testimoni" rows="4">"Alhamdulillah, berkat Istikmal Syariah saya bisa mulai menabung umroh dengan tenang."\n\n"Sangat membantu, pembimbingnya sabar dan jelas."</textarea>
+        <label>5. Testimoni (3 Orang)</label>
+        <textarea id="testimoni" rows="6">"Alhamdulillah berkat Istikmal Syariah saya bisa mulai menabung umroh."\nQueen Tini\n\n"Sangat membantu dan transparan."\nEnila Hasan\n\n"Prosesnya mudah dan sesuai syariah."\nKing Endri</textarea>
     </div>
 
     <div class="section">
-        <label>6. FAQ (format: Pertanyaan? Jawaban)</label>
-        <textarea id="faq" rows="5">Berapa minimal tabungan?\nMulai dari Rp500.000 per bulan.\n\nApakah syariah?\n100% sesuai prinsip syariah, tanpa riba.</textarea>
+        <label>6. Link YouTube (Opsional)</label>
+        <input id="youtube" placeholder="https://youtu.be/....">
     </div>
 
     <div class="section">
-        <label>7. Teks Tombol CTA</label>
+        <label>7. Teks CTA</label>
         <input id="cta" value="Konsultasi Sekarang">
         <label>Greeting WA</label>
         <input id="greeting" value="Assalamualaikum">
     </div>
 
     <button class="generate-btn" onclick="buildAndDownload()">📥 DOWNLOAD HTML</button>
-    <button class="copy-btn" onclick="copyCode()">📋 Copy Full HTML Code</button>
+    <button class="copy-btn" onclick="copyCode()">📋 Copy Full Code</button>
 </div>
 
 <script>
@@ -94,7 +103,6 @@ function openUpload() {
 }
 
 function buildAndDownload() {
-    // Ambil semua nilai
     const nama = document.getElementById("nama").value || "Leader";
     const wa = document.getElementById("wa").value || "";
     const jabatan = document.getElementById("jabatan").value || "";
@@ -102,10 +110,11 @@ function buildAndDownload() {
     const hook = document.getElementById("hook").value || "";
     const hookColor = document.getElementById("hookColor").value;
     const judul = document.getElementById("judul").value || "ISTIKMAL SYARIAH";
+    const judulColor = document.getElementById("judulColor").value;
     const tagline = document.getElementById("tagline").value || "";
     const deskripsi = document.getElementById("deskripsi").value || "";
     const testimoni = document.getElementById("testimoni").value || "";
-    const faq = document.getElementById("faq").value || "";
+    const youtube = document.getElementById("youtube").value || "";
     const cta = document.getElementById("cta").value || "Konsultasi Sekarang";
     const greeting = document.getElementById("greeting").value || "Assalamualaikum";
 
@@ -116,11 +125,11 @@ function buildAndDownload() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${judul}</title>
 <style>
-body{margin:0;padding:20px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0c2b24,#3a2a1f);color:white;text-align:center;}
-h1{color:#ffd700;font-size:42px;margin:20px 0;}
-.hook{color:${hookColor};font-size:48px;font-weight:bold;margin:15px 0;text-shadow:0 0 20px rgba(255,215,0,0.8);}
-.photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:25px auto;display:block;object-fit:cover;box-shadow:0 0 30px rgba(255,215,0,0.6);}
-.card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:600px;}
+body{margin:0;padding:30px 20px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0c2b24,#3a2a1f);color:white;text-align:center;}
+h1{color:${judulColor};font-size:42px;margin:15px 0;}
+.hook{color:${hookColor};font-size:46px;font-weight:bold;margin:10px 0;text-shadow:0 0 15px rgba(255,215,0,0.7);}
+.photo{width:240px;height:240px;border-radius:50%;border:10px solid #ffd700;margin:20px auto;display:block;object-fit:cover;}
+.card{background:rgba(8,61,53,0.95);padding:25px;border-radius:20px;margin:25px auto;max-width:620px;}
 .testimoni{background:#1a3f35;padding:20px;border-radius:15px;margin:20px auto;}
 .btn{background:#ffd700;color:#000;padding:18px 50px;border-radius:50px;text-decoration:none;font-size:22px;font-weight:bold;display:inline-block;margin:20px 0;}
 </style>
@@ -140,13 +149,12 @@ h1{color:#ffd700;font-size:42px;margin:20px 0;}
         htmlContent += `<div class="testimoni"><strong>Testimoni:</strong><br>${testimoni.replace(/\n/g, '<br><br>')}</div>`;
     }
 
-    if (faq) {
-        htmlContent += `<div class="card"><strong>FAQ:</strong><br>${faq.replace(/\n/g, '<br><br>')}</div>`;
+    if (youtube) {
+        htmlContent += `<div class="card"><h3>Video Penjelasan</h3><iframe width="100%" height="315" src="${youtube.replace('youtu.be/', 'youtube.com/embed/')}" frameborder="0" allowfullscreen></iframe></div>`;
     }
 
     htmlContent += `</body></html>`;
 
-    // Download
     const blob = new Blob([htmlContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -154,11 +162,11 @@ h1{color:#ffd700;font-size:42px;margin:20px 0;}
     a.download = 'LP-' + nama.replace(/ /g, '-') + '.html';
     a.click();
 
-    alert("✅ File HTML berhasil di-download!\n\nBisa langsung di-upload ke Netlify atau GitHub Pages.");
+    alert("✅ File HTML berhasil di-download!");
 }
 
 function copyCode() {
-    alert("Fitur Copy Code sedang dalam pengembangan.\n\nSementara pakai tombol Download dulu ya beb.");
+    alert("Fitur Copy Code akan saya aktifkan full di update berikutnya.\n\nSementara pakai Download dulu ya beb.");
 }
 </script>
 
